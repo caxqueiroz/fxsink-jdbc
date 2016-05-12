@@ -1,0 +1,51 @@
+spring:
+  profiles: local
+
+  cloud:
+      stream:
+        bindings:
+          input:
+            destination: <exchange destination>
+        rabbit:
+          binder:
+            nodes: <rabbit server>
+
+  rabbitmq:
+        host: <rabbit server>
+
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    platform: postgres
+    url: <jdbc url>
+    username: <username>
+    password: <password>
+
+  database:
+    driverClassName: org.postgresql.Driver
+
+server:
+  port: 8282
+
+---
+
+spring:
+  profiles: test
+  datasource:
+    driverClassName: org.h2.Driver
+  jpa:
+          hibernate:
+                  ddl-auto: create-drop
+
+---
+logging:
+  level:
+     io:
+        cax: INFO
+     com:
+        netflix: WARN
