@@ -1,0 +1,13 @@
+---
+timeout: 60
+instances: 1
+memory: 1G
+#buildpack: java_buildpack_offline
+env:
+    SPRING_PROFILES_ACTIVE: cloud
+    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
+
+applications:
+- name: fxsink-jdbc
+  path: target/fxsink-1.0.0-MASTER.jar
+  services: [confservice, rabbitmq-dev, postgres-dev]
